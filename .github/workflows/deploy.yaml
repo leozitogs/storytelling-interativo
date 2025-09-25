@@ -27,8 +27,6 @@ jobs:
       # MUDANÇA AQUI: Configura o PNPM
       - name: Set up PNPM
         uses: pnpm/action-setup@v4
-        with:
-          version: 9 # Use a versão do pnpm que desejar
 
       - name: Set up Node
         uses: actions/setup-node@v4
