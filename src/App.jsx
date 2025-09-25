@@ -113,7 +113,7 @@ function App() {
         <div className="homepage-content">
           <div className="hero-section">
             <div className="logo-container">
-              <img src="/favicon.svg" alt="sCIna Logo" className="logo" />
+              <img src="/dist/favicon.ico" alt="sCIna Logo" className="logo" />
               <h1 className="main-title">Hub Inteligente UFPE</h1>
               <p className="subtitle">Equipe sCIna - Storytelling Interativo</p>
             </div>
