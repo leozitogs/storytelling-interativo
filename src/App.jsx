@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
-import { ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
+import { Play, BookOpen, Users, Lightbulb } from 'lucide-react';
 import './App.css';
 
 // Importando as imagens
@@ -32,6 +32,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(pages.length);
   const [isLoading, setIsLoading] = useState(true);
+  const [showHomepage, setShowHomepage] = useState(true);
 
   useEffect(() => {
     // Simular carregamento das imagens
@@ -71,6 +72,10 @@ function App() {
     }
   };
 
+  const startStorytelling = () => {
+    setShowHomepage(false);
+  };
+
   const goToFirstPage = () => {
     console.log('goToFirstPage called');
     setCurrentPage(0);
@@ -102,13 +107,61 @@ function App() {
     );
   }
 
+  if (showHomepage) {
+    return (
+      <div className="homepage-container">
+        <div className="homepage-content">
+          <div className="hero-section">
+            <div className="logo-container">
+              <img src="/favicon.svg" alt="sCIna Logo" className="logo" />
+              <h1 className="main-title">Hub Inteligente UFPE</h1>
+              <p className="subtitle">Equipe sCIna - Storytelling Interativo</p>
+            </div>
+          </div>
+
+          <div className="project-info">
+            <div className="info-card">
+              <div className="card-icon">
+                <Lightbulb size={32} />
+              </div>
+              <h3>Inovação Acadêmica</h3>
+              <p>Uma aplicação web revolucionária para transformar a experiência acadêmica dos estudantes da UFPE, superando as limitações do SIGAA atual.</p>
+            </div>
+
+            <div className="info-card">
+              <div className="card-icon">
+                <Users size={32} />
+              </div>
+              <h3>Centrado no Usuário</h3>
+              <p>Interface intuitiva e moderna com foco na experiência do usuário, garantindo acessibilidade e responsividade em todos os dispositivos.</p>
+            </div>
+
+            <div className="info-card">
+              <div className="card-icon">
+                <BookOpen size={32} />
+              </div>
+              <h3>Hub Centralizado</h3>
+              <p>Consolidação de informações acadêmicas em um local único: horários, notas, avisos e comunicação direta com chatbot inteligente.</p>
+            </div>
+          </div>
+
+          <div className="cta-section">
+            <button className="start-button" onClick={startStorytelling}>
+              <Play size={20} />
+              Iniciar Storytelling
+            </button>
+            <p className="cta-description">
+              Descubra como nossa equipe sCIna está revolucionando a gestão acadêmica na UFPE
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="storytelling-container">
       <div className="flipbook-wrapper">
-        <div className="page-indicator">
-          Página {currentPage + 1} de {totalPages}
-        </div>
-        
         <HTMLFlipBook
           ref={flipBook}
           width={600}
@@ -147,31 +200,7 @@ function App() {
           ))}
         </HTMLFlipBook>
 
-        <div className="controls">
-          <button 
-            className="control-btn" 
-            onClick={goToFirstPage}
-            title="Voltar ao início"
-          >
-            <RotateCcw size={20} />
-          </button>
-          <button 
-            className="control-btn" 
-            onClick={prevPage}
-            disabled={currentPage === 0}
-            title="Página anterior"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button 
-            className="control-btn" 
-            onClick={nextPage}
-            disabled={currentPage >= totalPages - 1}
-            title="Próxima página"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
+
       </div>
     </div>
   );
