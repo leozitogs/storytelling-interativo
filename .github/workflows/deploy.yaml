@@ -1,0 +1,53 @@
+# .github/workflows/deploy.yml
+
+name: Deploy Vite site to Pages
+
+on:
+  push:
+    branches: ['main'] # ou 'master'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # MUDANÇA AQUI: Configura o PNPM
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9 # Use a versão do pnpm que desejar
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm' # MUDANÇA AQUI: Cache para pnpm
+
+      - name: Install dependencies
+        run: pnpm install # MUDANÇA AQUI: Usa pnpm install
+
+      - name: Build
+        run: pnpm run build # MUDANÇA AQUI: Usa pnpm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
