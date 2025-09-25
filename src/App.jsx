@@ -12,6 +12,7 @@ import page5 from './assets/5.png';
 import page6 from './assets/6.png';
 import page7 from './assets/7.png';
 import page8 from './assets/8.png';
+import logoEqpScina from './assets/favicon.ico';
 
 const pages = [page1, page2, page3, page4, page5, page6, page7, page8];
 
@@ -113,7 +114,7 @@ function App() {
         <div className="homepage-content">
           <div className="hero-section">
             <div className="logo-container">
-              <img src="/dist/favicon.ico" alt="sCIna Logo" className="logo" />
+              <img src={logoEqpScina} alt="sCIna Logo" className="logo" />
               <h1 className="main-title">Hub Inteligente UFPE</h1>
               <p className="subtitle">Equipe sCIna - Storytelling Interativo</p>
             </div>
