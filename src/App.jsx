@@ -12,7 +12,7 @@ import page5 from './assets/5.png';
 import page6 from './assets/6.png';
 import page7 from './assets/7.png';
 import page8 from './assets/8.png';
-import logoEqpScina from './LogoScinaBranca.png';
+import logoEqpScina from './assets/LogoScinaBranca.png';
 
 const pages = [page1, page2, page3, page4, page5, page6, page7, page8];
 
